@@ -27,14 +27,14 @@ RUN apk add --update --no-cache \
 RUN addgroup odoo && adduser odoo -s /bin/sh -D -G odoo \
     && echo "odoo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
     && mkdir /opt \
-    && wget https://nightly.odoo.com/10.0/nightly/src/odoo_10.0.20170101.tar.gz \
-    && tar -xzf odoo_10.0.20170101.tar.gz -C /opt \
-    && rm odoo_10.0.20170101.tar.gz \
+    && wget https://nightly.odoo.com/10.0/nightly/src/odoo_10.0.latest.tar.gz \
+    && tar -xzf odoo_10.0.latest.tar.gz -C /opt \
+    && rm odoo_10.0.latest.tar.gz \
     && npm install -g less less-plugin-clean-css \
-    && cd /opt/odoo-10.0-20170101 \
+    && cd /opt/odoo-10.0.latest.tar.gz \
     && pip install -r requirements.txt \
     && python setup.py install \
-    && rm -r /opt/odoo-10.0-20170101
+    && rm -r /opt/odoo-10.0.latest.tar.gz
 
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
